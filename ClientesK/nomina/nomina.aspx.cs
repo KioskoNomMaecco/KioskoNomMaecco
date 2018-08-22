@@ -64,26 +64,28 @@ public partial class nomina_nomina : System.Web.UI.Page
 
         DataSet dsNominas = new DataSet();
         dsNominas.Tables.Add("Tabla");
-        dsNominas.Tables[0].Columns.Add("iIdNomina");
-        dsNominas.Tables[0].Columns.Add("fkiIdPeriodo");
-        dsNominas.Tables[0].Columns.Add("fkIidEmpleadoC");
-        dsNominas.Tables[0].Columns.Add("fkiIdEmpresa");
-        dsNominas.Tables[0].Columns.Add("fkiIdPuesto");
-        dsNominas.Tables[0].Columns.Add("fkIidDepartamento");
+        dsNominas.Tables[0].Columns.Add("fkIidPeriodo");
         dsNominas.Tables[0].Columns.Add("iEstatusEmpleado");
-        dsNominas.Tables[0].Columns.Add("Edad");
-        dsNominas.Tables[0].Columns.Add("Puesto");
-        dsNominas.Tables[0].Columns.Add("Buque");
-        //dsNominas.Tables[0].Columns.Add("TipoInfonavit");
-        //dsNominas.Tables[0].Columns.Add("fvalor");
-        //dsNominas.Tables[0].Columns.Add("fSalarioBase");
-        //dsNominas.Tables[0].Columns.Add("fSalarioDiario");
-        //dsNominas.Tables[0].Columns.Add("fSalarioBC");
-        //dsNominas.Tables[0].Columns.Add("iDiasTrabajandos");
-        //dsNominas.Tables[0].Columns.Add("TipoIncapacidad");
-        //dsNominas.Tables[0].Columns.Add("iNumeroDias");
-        //dsNominas.Tables[0].Columns.Add("fSueltoBruto");
-        //dsNominas.Tables[0].Columns.Add("fExtraOcasional");
+        dsNominas.Tables[0].Columns.Add("iTipoNomina");
+        //dsNominas.Tables[0].Columns.Add("fkiIdPeriodo");
+        //dsNominas.Tables[0].Columns.Add("fkIidEmpleadoC");
+        //dsNominas.Tables[0].Columns.Add("fkiIdEmpresa");
+        //dsNominas.Tables[0].Columns.Add("fkiIdPuesto");
+        //dsNominas.Tables[0].Columns.Add("fkIidDepartamento");
+        //dsNominas.Tables[0].Columns.Add("iEstatusEmpleado");
+        //dsNominas.Tables[0].Columns.Add("Edad");
+        //dsNominas.Tables[0].Columns.Add("Puesto");
+        //dsNominas.Tables[0].Columns.Add("Buque");
+        ////dsNominas.Tables[0].Columns.Add("TipoInfonavit");
+        ////dsNominas.Tables[0].Columns.Add("fvalor");
+        ////dsNominas.Tables[0].Columns.Add("fSalarioBase");
+        ////dsNominas.Tables[0].Columns.Add("fSalarioDiario");
+        ////dsNominas.Tables[0].Columns.Add("fSalarioBC");
+        ////dsNominas.Tables[0].Columns.Add("iDiasTrabajandos");
+        ////dsNominas.Tables[0].Columns.Add("TipoIncapacidad");
+        ////dsNominas.Tables[0].Columns.Add("iNumeroDias");
+        ////dsNominas.Tables[0].Columns.Add("fSueltoBruto");
+        ////dsNominas.Tables[0].Columns.Add("fExtraOcasional");
 
 
 
@@ -97,21 +99,28 @@ public partial class nomina_nomina : System.Web.UI.Page
                 for (int x = 0; x < dtNominas.Rows.Count; x++)
                 {
                     String nombreEmpleado="";
-                     //Tabla tbEmpleado = Manejador.getEjecutaStoredProcedure1("getEmpleadoxID", dtNominas.Rows[x]["fkiIdEmpleadoC"].ToString());
-                     //if (tbEmpleado != null)
-                     //{
-                     //     DataTable dtE = clFunciones.convertToDatatable(tbEmpleado);
-                     //     nombreEmpleado = dtE.Rows[0]["cNombre"].ToString();
-
-                     //}
-
-                    dsNominas.Tables[0].Rows.Add(dtNominas.Rows[x]["fkIid"],
-                                                    dtNominas.Rows[x]["fkiIdPeriodo"],
-                                                    nombreEmpleado,
-                                                    dtNominas.Rows[x]["Puesto"],
-                                                    dtNominas.Rows[x]["Buque"]);
+                    Tabla tbPeriodo = Manejador.getEjecutaStoredProcedure1("getPeriodoxId", dtNominas.Rows[x]["fkIidPeriodo"].ToString());
+                    if (tbPeriodo != null)
+                    {
+                        DataTable dtPeriodo = clFunciones.convertToDatatable(tbPeriodo);
+                        for (int y = 0; y < dtPeriodo.Rows.Count; y++)
+                        {
+                            //DataTable dtE = clFunciones.convertToDatatable(tbPeriodo);
+                            dsNominas.Tables[0].Rows.Add(dtPeriodo.Rows[y]["dFechaPeriodo"],
+                                                series(dtNominas.Rows[x]["iEstatusEmpleado"].ToString()),
+                                                tipo(dtNominas.Rows[x]["iTipoNomina"].ToString()));
 
 
+
+                        }
+
+
+                        
+                        //nombreEmpleado = dtE.Rows[0]["cNombre"].ToString();
+
+                    }
+
+                
 
                 }
 
@@ -134,6 +143,30 @@ public partial class nomina_nomina : System.Web.UI.Page
             clFunciones.JQMensaje(this, EX.Message.Replace("'", ""), TipoMensaje.Error);
         }
 
+    }
+    public String series(String tipo)
+    {
+         switch (tipo)
+        {
+            case "0":return "A";
+            case "1":return "B";
+            case "2":return "C";
+            case "3":return "D";
+            case "4":return "E";
+            default: return "A";
+            
+        }
+    }
+    public String tipo(String t)
+    {
+        switch (t)
+        {
+            case "0": return "Abordo";
+            case "1": return "Descanso";
+           
+            default: return "Abordo";
+
+        }
     }
 
     protected void dtgnominas_RowCommand(object sender, GridViewCommandEventArgs e)
