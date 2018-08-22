@@ -106,7 +106,7 @@
                                 
 
                                 <asp:CommandField ButtonType="Image" HeaderText="" 
-                                    SelectImageUrl="../imagenes/bajar.png"
+                                    SelectImageUrl="../imagenes/vistapre.png"
                                     ShowSelectButton="True" >
                                     
                                 <HeaderStyle Width="40px" />
