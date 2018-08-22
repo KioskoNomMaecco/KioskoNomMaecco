@@ -18,8 +18,6 @@ public partial class nomina_nomina : System.Web.UI.Page
             Response.Redirect("../default.aspx");
         }
 
-        //CAMBIOS
-
         if (!IsPostBack)
         {
             
@@ -146,7 +144,30 @@ public partial class nomina_nomina : System.Web.UI.Page
         }
 
     }
-   
+    public String series(String tipo)
+    {
+         switch (tipo)
+        {
+            case "0":return "A";
+            case "1":return "B";
+            case "2":return "C";
+            case "3":return "D";
+            case "4":return "E";
+            default: return "A";
+            
+        }
+    }
+    public String tipo(String t)
+    {
+        switch (t)
+        {
+            case "0": return "Abordo";
+            case "1": return "Descanso";
+           
+            default: return "Abordo";
+
+        }
+    }
 
     protected void dtgnominas_RowCommand(object sender, GridViewCommandEventArgs e)
     {
@@ -155,10 +176,59 @@ public partial class nomina_nomina : System.Web.UI.Page
 
             if (e.CommandName == "Select")
             {
-               
+                int id = Convert.ToInt32(e.CommandArgument);
+
+
+                //DateTime fecha = DateTime.Parse(((Label)dtgnominas.Rows[id].FindControl("lblfecha")).Text);
+                string archivo = ((Label)dtgnominas.Rows[id].FindControl("fkIidEmpleadoC")).Text;
+
+                Session["ruta"] = "infodown/" + archivo;
+                String path = Server.MapPath("../infodown") + "\\" + archivo;
+                String path2 = "../infodown/" + archivo;
+
+
+
+                Session["archivo"] = archivo;
+
+                System.IO.FileInfo toDownload = new System.IO.FileInfo(path);
+                if (toDownload.Exists)
+                {
+                    Response.Redirect("../descarga.aspx", false);
+                    //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "popup", "window.open('" + path2  + "','_blank')", true);
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, typeof(string), "alert", "alert('No se encuentra el archivo ');", true);
+
+                }
 
             }
-            
+            //if (e.CommandName == "Delete")
+            //{
+            //    int id = Convert.ToInt32(e.CommandArgument);
+
+
+            //    //DateTime fecha = DateTime.Parse(((Label)dtgnominas.Rows[id].FindControl("lblfecha")).Text);
+            //    string sindicato = ((Label)dtgnominas.Rows[id].FindControl("lbldpagosin")).Text;
+
+            //    Session["ruta"] = "pagosn/" + sindicato + ".pdf";
+            //    String path = Server.MapPath("../pagosn") + "\\" + sindicato + ".pdf";
+            //    String path2 = "../pagosn/" + sindicato + ".pdf";
+            //    Session["archivo"] = sindicato + ".pdf";
+            //    System.IO.FileInfo toDownload = new System.IO.FileInfo(path);
+            //    if (toDownload.Exists)
+            //    {
+            //        Response.Redirect("../descargar.aspx", true);
+            //        //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "popup", "window.open('" + path2 + "','_blank')", true);
+            //    }
+            //    else
+            //    {
+            //        ScriptManager.RegisterStartupScript(this, typeof(string), "alert", "mensaje('No se encuentra el archivo ');", true);
+
+            //    }
+
+            //}
+
         }
         catch (Exception EX)
         {
@@ -180,31 +250,5 @@ public partial class nomina_nomina : System.Web.UI.Page
 
     }
 
-
-
-    public String series(String tipo)
-    {
-        switch (tipo)
-        {
-            case "0": return "A";
-            case "1": return "B";
-            case "2": return "C";
-            case "3": return "D";
-            case "4": return "E";
-            default: return "A";
-
-        }
-    }
-    public String tipo(String t)
-    {
-        switch (t)
-        {
-            case "0": return "Abordo";
-            case "1": return "Descanso";
-
-            default: return "Abordo";
-
-        }
-    }
    
 }
