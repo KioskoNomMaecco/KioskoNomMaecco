@@ -129,7 +129,7 @@
         <li class="header">NOMINA </li>
 
         <li><a href="../nomina/nomina.aspx"><i class="fa fa-circle-o text-aqua"></i> <span>Buscar Nomina</span></a></li>
-        
+        <li><a href="../nomina/costosnomina.aspx"><i class="fa fa-circle-o text-aqua"></i> <span>Ver Costos Nomina</span></a></li>
      <%--   
         <li class="header">CONTABILIDAD</li>
         
