@@ -68,6 +68,7 @@
                 <br/>
                 <asp:Label ID="lblmensaje" runat="server" Text=""></asp:Label>
                 <br/>
+
                 <asp:GridView ID="dtgnominas" runat="server" AutoGenerateColumns="False" 
                     GridLines="None" CellPadding="4" ForeColor="#333333" AllowPaging="True" 
                         onrowcommand="dtgnominas_RowCommand" 
@@ -130,6 +131,78 @@
                             <SortedDescendingCellStyle BackColor="#FFFDF8" />
                             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                     </asp:GridView>
+
+
+
+                    <br /><br /><br /><br />
+
+                    <!--<<<<<<<<<<<<<<<<<<<< NOMINA DATA GRID>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+
+                     <asp:GridView ID="dtgNom" runat="server" AutoGenerateColumns="False" 
+                    GridLines="None" CellPadding="4" ForeColor="#333333" AllowPaging="True" 
+                        onrowcommand="dtgnominas_RowCommand" 
+                        onpageindexchanging="dtgnominas_PageIndexChanging" 
+                        onselectedindexchanged="dtgnominas_SelectedIndexChanged" Width="434px">
+                            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                            <Columns>
+                                
+                                <asp:TemplateField HeaderText="Periodo Nomina">
+                                    <ItemTemplate>
+                                        <asp:Label ID="fkiIdPeriodo" runat="server" Text='<%# Bind("fkiIdPeriodo") %>' Visible="true" ></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                
+                                 <asp:TemplateField HeaderText="Serie">
+                                    <ItemTemplate>
+                                        <asp:Label ID="iEstatusEmpleado" runat="server" Text='<%# Bind("iEstatusEmpleado") %>' Visible="true" ></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                
+                                <asp:TemplateField HeaderText="Tipo">
+                                    <ItemTemplate>
+                                        <asp:Label ID="iTipoNomina" runat="server" Text='<%# Bind("iTipoNomina") %>' Visible="true" ></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                
+                                
+                                
+                                <%--<asp:TemplateField HeaderText="Empleado C">
+                                    <ItemTemplate>
+                                        <asp:Label Width="300px" style=" text-align:right;" ID="nombrearchivo" runat="server" Text='<%# Bind("fkIidEmpleadoC") %>'  Visible="true" ></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>--%>
+                                
+                                
+                                
+
+                                <asp:CommandField ButtonType="Image" HeaderText="" 
+                                    SelectImageUrl="../imagenes/vistapre.png"
+                                    ShowSelectButton="True" >
+                                    
+                                <HeaderStyle Width="40px" />
+                                </asp:CommandField>
+                                          
+                                
+                                
+                                          
+                               
+
+                                          
+                            </Columns>
+                            <EditRowStyle BackColor="#999999" />
+                            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="False" ForeColor="#333333" />
+                            <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                            <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                            <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                    </asp:GridView>
+
+
+
             </ContentTemplate>
         </asp:UpdatePanel>
         
