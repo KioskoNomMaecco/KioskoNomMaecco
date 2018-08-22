@@ -47,8 +47,7 @@
                 Año:
 
                 <asp:DropDownList ID="cboanio" runat="server">
-                    <asp:ListItem>2016</asp:ListItem>
-                    <asp:ListItem>2017</asp:ListItem>
+               
                     <asp:ListItem>2018</asp:ListItem>
                     <asp:ListItem>2019</asp:ListItem>
                     <asp:ListItem>2020</asp:ListItem>
@@ -56,7 +55,9 @@
                     <asp:ListItem>2022</asp:ListItem>
                     <asp:ListItem>2023</asp:ListItem>
                     <asp:ListItem>2024</asp:ListItem>
-                    <asp:ListItem>2025</asp:ListItem>
+                    <asp:ListItem>2025</asp:ListItem>   
+                    <asp:ListItem>2026</asp:ListItem>
+                    <asp:ListItem>2027</asp:ListItem>
                 </asp:DropDownList>
                 <br/>
                 <br/>
@@ -75,31 +76,31 @@
                             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                             <Columns>
                                 
-                                <asp:TemplateField HeaderText="">
-                                    <ItemTemplate>
-                                        <asp:Label ID="iIdNomina" runat="server" Text='<%# Bind("iIdNomina") %>' Visible="true" ></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                
-                                 <asp:TemplateField HeaderText="">
+                                <asp:TemplateField HeaderText="Periodo Nomina">
                                     <ItemTemplate>
                                         <asp:Label ID="fkiIdPeriodo" runat="server" Text='<%# Bind("fkiIdPeriodo") %>' Visible="true" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 
-                                <asp:TemplateField HeaderText="">
+                                 <asp:TemplateField HeaderText="Serie">
                                     <ItemTemplate>
-                                        <asp:Label ID="fkiIdPeriodo" runat="server" Text='<%# Bind("Puesto") %>' Visible="true" ></asp:Label>
+                                        <asp:Label ID="iEstatusEmpleado" runat="server" Text='<%# Bind("iEstatusEmpleado") %>' Visible="true" ></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                
+                                <asp:TemplateField HeaderText="Tipo">
+                                    <ItemTemplate>
+                                        <asp:Label ID="iTipoNomina" runat="server" Text='<%# Bind("iTipoNomina") %>' Visible="true" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 
                                 
                                 
-                                <asp:TemplateField HeaderText="Empleado C">
+                                <%--<asp:TemplateField HeaderText="Empleado C">
                                     <ItemTemplate>
                                         <asp:Label Width="300px" style=" text-align:right;" ID="nombrearchivo" runat="server" Text='<%# Bind("fkIidEmpleadoC") %>'  Visible="true" ></asp:Label>
                                     </ItemTemplate>
-                                </asp:TemplateField>
+                                </asp:TemplateField>--%>
                                 
                                 
                                 
