@@ -79,36 +79,44 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 
-                                 <asp:TemplateField HeaderText="">
+                                 <asp:TemplateField HeaderText="NOMBRE">
                                     <ItemTemplate>
-                                        <asp:Label ID="fkiIdPeriodo" runat="server" Text='<%# Bind("fkiIdPeriodo") %>' Visible="true" ></asp:Label>
+                                        <asp:Label ID="lblEmpleadoC" runat="server" Text='<%# Bind("EmpleadoC") %>' Visible="true" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 
-                                <asp:TemplateField HeaderText="">
+                                <asp:TemplateField HeaderText="IMSS">
                                     <ItemTemplate>
-                                        <asp:Label ID="fkiIdPeriodo" runat="server" Text='<%# Bind("Puesto") %>' Visible="true" ></asp:Label>
+                                        <asp:Label ID="lblimss" runat="server" Text='<%# Bind("IMSS") %>' Visible="true" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 
                                 
                                 
-                                <asp:TemplateField HeaderText="Empleado C">
+                                <asp:TemplateField HeaderText="RCV">
                                     <ItemTemplate>
-                                        <asp:Label Width="300px" style=" text-align:right;" ID="nombrearchivo" runat="server" Text='<%# Bind("fkIidEmpleadoC") %>'  Visible="true" ></asp:Label>
+                                        <asp:Label Width="300px" style=" text-align:right;" ID="lblrcv" runat="server" Text='<%# Bind("RCV") %>'  Visible="False" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                
+                                <asp:TemplateField HeaderText="INFONAVIT">
+                                    <ItemTemplate>
+                                        <asp:Label Width="300px" style=" text-align:right;" ID="lblinfonavit" runat="server" Text='<%# Bind("INFONAVIT") %>'  Visible="False" ></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="ISN">
+                                    <ItemTemplate>
+                                        <asp:Label Width="300px" style=" text-align:right;" ID="lblisn" runat="server" Text='<%# Bind("ISN") %>'  Visible="False" ></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="TOTAL">
+                                    <ItemTemplate>
+                                        <asp:Label Width="300px" style=" text-align:right;" ID="lbltotal" runat="server" Text='<%# Bind("TOTAL") %>'  Visible="False" ></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                                 
                                 
 
-                                <asp:CommandField ButtonType="Image" HeaderText="" 
-                                    SelectImageUrl="../imagenes/bajar.png"
-                                    ShowSelectButton="True" >
-                                    
-                                <HeaderStyle Width="40px" />
-                                </asp:CommandField>
-                                          
+                                
                                 
                                 
                                           
@@ -127,6 +135,78 @@
                             <SortedDescendingCellStyle BackColor="#FFFDF8" />
                             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                     </asp:GridView>
+
+                    <asp:GridView ID="dtgcostos" runat="server" AutoGenerateColumns="False" 
+                    GridLines="None" CellPadding="4" ForeColor="#333333" AllowPaging="True" >
+
+
+                        
+                            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                            <Columns>
+                                
+                                <asp:TemplateField HeaderText="">
+                                    <ItemTemplate>
+                                        <asp:Label ID="iIdNomina" runat="server" Text='<%# Bind("iIdNomina") %>' Visible="true" ></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                
+                                 <asp:TemplateField HeaderText="NOMBRE">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblEmpleadoC" runat="server" Text='<%# Bind("EmpleadoC") %>' Visible="true" ></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                
+                                <asp:TemplateField HeaderText="IMSS">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblimss" runat="server" Text='<%# Bind("IMSS") %>' Visible="true" ></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                
+                                
+                                
+                                <asp:TemplateField HeaderText="RCV">
+                                    <ItemTemplate>
+                                        <asp:Label Width="300px" style=" text-align:right;" ID="lblrcv" runat="server" Text='<%# Bind("RCV") %>'  Visible="False" ></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="INFONAVIT">
+                                    <ItemTemplate>
+                                        <asp:Label Width="300px" style=" text-align:right;" ID="lblinfonavit" runat="server" Text='<%# Bind("INFONAVIT") %>'  Visible="False" ></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="ISN">
+                                    <ItemTemplate>
+                                        <asp:Label Width="300px" style=" text-align:right;" ID="lblisn" runat="server" Text='<%# Bind("ISN") %>'  Visible="False" ></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="TOTAL">
+                                    <ItemTemplate>
+                                        <asp:Label Width="300px" style=" text-align:right;" ID="lbltotal" runat="server" Text='<%# Bind("TOTAL") %>'  Visible="False" ></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                
+                                
+
+                                
+                                
+                                
+                                          
+                               
+
+                                          
+                            </Columns>
+                            <EditRowStyle BackColor="#999999" />
+                            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="False" ForeColor="#333333" />
+                            <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                            <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                            <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                    </asp:GridView>
+
             </ContentTemplate>
         </asp:UpdatePanel>
         
