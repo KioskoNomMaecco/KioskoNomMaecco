@@ -274,6 +274,7 @@ public partial class nomina_nomina : System.Web.UI.Page
                                         status = "PLANTA";
                                     }
 
+                                    DateTime nac = DateTime.Parse(dtEmpleado.Rows[y]["dFechaNac"].ToString().Remove(18));
                                     dsNom.Tables[0].Rows.Add(dtNominas.Rows[x]["iIdNomina"],
                                                     dtNominas.Rows[x]["fkiIdEmpleadoC"],
                                                     dtEmpleado.Rows[y]["cCodigoEmpleado"],
@@ -282,7 +283,7 @@ public partial class nomina_nomina : System.Web.UI.Page
                                                     dtEmpleado.Rows[y]["cRFC"],
                                                     dtEmpleado.Rows[y]["cCURP"],
                                                     dtEmpleado.Rows[y]["cIMSS"],
-                                                    dtEmpleado.Rows[y]["dFechaNac"],
+                                                   nac.ToShortDateString(),
                                                     dtNominas.Rows[x]["Edad"],
                                                     dtNominas.Rows[x]["Puesto"],
                                                     dtNominas.Rows[x]["Buque"],
@@ -367,7 +368,7 @@ public partial class nomina_nomina : System.Web.UI.Page
                                                     dtSumas.Rows[x]["fSalarioBC"],
                                                     "",
                                                     "",
-                                                    dtSumas.Rows[x]["iNumeroDias"],
+                                                   "",
                                                     dtSumas.Rows[x]["fSueldoBruto"],
                                                     dtSumas.Rows[x]["fTExtraFijo"],
                                                     dtSumas.Rows[x]["fTExtraOcasional"],

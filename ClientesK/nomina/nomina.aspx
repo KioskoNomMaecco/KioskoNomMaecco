@@ -149,7 +149,7 @@
                     <br /><br /><br /><br />
 
                     <!--<<<<<<<<<<<<<<<<<<<< NOMINA DATA GRID>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
-                    <div style="width: 100%; height: 400px; overflow: scroll">
+                    <div style="width: 100%; height: 900px; overflow: scroll">
                      <asp:GridView ID="dtgNom" runat="server" AutoGenerateColumns="False" 
                     GridLines="None" CellPadding="4" ForeColor="#333333" AllowPaging="True" 
                     PageSize="1000" >
@@ -319,47 +319,47 @@
 
                                 <asp:TemplateField HeaderText="Total_pecepciones">
                                     <ItemTemplate>
-                                        <asp:Label ID="Total_pecepciones" runat="server" Text='<%# Bind("Total_pecepciones") %>' Visible="true" ></asp:Label>
+                                        <asp:Label Width="100px" ID="Total_pecepciones" runat="server" Text='<%# Bind("Total_pecepciones") %>' Visible="true" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                 <asp:TemplateField HeaderText="Total_percepciones_p_isr">
+                                 <asp:TemplateField  HeaderText="Total_percepciones_p_isr">
                                     <ItemTemplate>
-                                        <asp:Label ID="Total_percepciones_p_isr" runat="server" Text='<%# Bind("Total_percepciones_p_isr") %>' Visible="true" ></asp:Label>
+                                        <asp:Label Width="100px" ID="Total_percepciones_p_isr" runat="server" Text='<%# Bind("Total_percepciones_p_isr") %>' Visible="true" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Incapacidad">
+                                <asp:TemplateField  HeaderText="Incapacidad">
                                     <ItemTemplate>
-                                        <asp:Label ID="Incapacidad" runat="server" Text='<%# Bind("Incapacidad") %>' Visible="true" ></asp:Label>
+                                        <asp:Label Width="100px"  ID="Incapacidad" runat="server" Text='<%# Bind("Incapacidad") %>' Visible="true" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="ISR">
+                                <asp:TemplateField  HeaderText="ISR">
                                     <ItemTemplate>
-                                        <asp:Label Width="300px"  ID="ISR" runat="server" Text='<%# Bind("ISR") %>'  Visible="true" ></asp:Label>
+                                        <asp:Label  Width="100px"  ID="ISR" runat="server" Text='<%# Bind("ISR") %>'  Visible="true" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                 <asp:TemplateField HeaderText="IMSS">
+                                 <asp:TemplateField  HeaderText="IMSS">
                                     <ItemTemplate>
-                                        <asp:Label ID="IMSS" runat="server" Text='<%# Bind("IMSS") %>' Visible="true" ></asp:Label>
+                                        <asp:Label Width="100px" ID="IMSS" runat="server" Text='<%# Bind("IMSS") %>' Visible="true" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                 <asp:TemplateField HeaderText="Infonavit">
+                                 <asp:TemplateField  HeaderText="Infonavit">
                                     <ItemTemplate>
-                                        <asp:Label ID="Infonavit" runat="server" Text='<%# Bind("Infonavit") %>' Visible="true" ></asp:Label>
+                                        <asp:Label Width="80px"  ID="Infonavit" runat="server" Text='<%# Bind("Infonavit") %>' Visible="true" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>  
                                 <asp:TemplateField HeaderText="Infonavit_bim_anterior">
                                     <ItemTemplate>
-                                        <asp:Label ID="Infonavit_bim_anterior" runat="server" Text='<%# Bind("Infonavit_bim_anterior") %>' Visible="true" ></asp:Label>
+                                        <asp:Label Width="100px" ID="Infonavit_bim_anterior" runat="server" Text='<%# Bind("Infonavit_bim_anterior") %>' Visible="true" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Ajuste_infornavit">
+                                <asp:TemplateField  HeaderText="Ajuste_infornavit">
                                     <ItemTemplate>
-                                        <asp:Label Width="300px"  ID="Ajuste_infornavit" runat="server" Text='<%# Bind("Ajuste_infornavit") %>'  Visible="true" ></asp:Label>
+                                        <asp:Label Width="80px"  ID="Ajuste_infornavit" runat="server" Text='<%# Bind("Ajuste_infornavit") %>'  Visible="true" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Cuota_Sindical">
+                                <asp:TemplateField  HeaderText="Cuota_Sindical">
                                     <ItemTemplate>
-                                        <asp:Label ID="Cuota_Sindical" runat="server" Text='<%# Bind("Cuota_Sindical") %>' Visible="true" ></asp:Label>
+                                        <asp:Label Width="80px" ID="Cuota_Sindical" runat="server" Text='<%# Bind("Cuota_Sindical") %>' Visible="true" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                  <asp:TemplateField HeaderText="Pension_Alimenticia">
@@ -374,27 +374,27 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Fonacot">
                                     <ItemTemplate>
-                                        <asp:Label Width="300px"  ID="Fonacot" runat="server" Text='<%# Bind("Fonacot") %>'  Visible="true" ></asp:Label>
+                                        <asp:Label Width="100px"  ID="Fonacot" runat="server" Text='<%# Bind("Fonacot") %>'  Visible="true" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                  <asp:TemplateField HeaderText="Subsidio_Generado">
                                     <ItemTemplate>
-                                        <asp:Label ID="Subsidio_Generado" runat="server" Text='<%# Bind("Subsidio_Generado") %>' Visible="true" ></asp:Label>
+                                        <asp:Label Width="80px" ID="Subsidio_Generado" runat="server" Text='<%# Bind("Subsidio_Generado") %>' Visible="true" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                  <asp:TemplateField HeaderText="Subsidio_Aplicado">
                                     <ItemTemplate>
-                                        <asp:Label ID="Subsidio_Aplicado" runat="server" Text='<%# Bind("Subsidio_Aplicado") %>' Visible="true" ></asp:Label>
+                                        <asp:Label Width="80px" ID="Subsidio_Aplicado" runat="server" Text='<%# Bind("Subsidio_Aplicado") %>' Visible="true" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>  
                                 <asp:TemplateField HeaderText="Maecco">
                                     <ItemTemplate>
-                                        <asp:Label ID="Maecco" runat="server" Text='<%# Bind("Maecco") %>' Visible="true" ></asp:Label>
+                                        <asp:Label Width="80px" ID="Maecco" runat="server" Text='<%# Bind("Maecco") %>' Visible="true" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Prestamo_Personal_S">
                                     <ItemTemplate>
-                                        <asp:Label Width="300px"  ID="Prestamo_Personal_S" runat="server" Text='<%# Bind("Prestamo_Personal_S") %>'  Visible="true" ></asp:Label>
+                                        <asp:Label Width="100px"  ID="Prestamo_Personal_S" runat="server" Text='<%# Bind("Prestamo_Personal_S") %>'  Visible="true" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Adeudo_Infonavit_S">
@@ -404,74 +404,74 @@
                                 </asp:TemplateField>
                                  <asp:TemplateField HeaderText="Diferencia_Infonavit_S">
                                     <ItemTemplate>
-                                        <asp:Label ID="Diferencia_Infonavit_S" runat="server" Text='<%# Bind("Diferencia_Infonavit_S") %>' Visible="true" ></asp:Label>
+                                        <asp:Label Width="80px" ID="Diferencia_Infonavit_S" runat="server" Text='<%# Bind("Diferencia_Infonavit_S") %>' Visible="true" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Complemento_Sindicato">
                                     <ItemTemplate>
-                                        <asp:Label ID="Complemento_Sindicato" runat="server" Text='<%# Bind("Complemento_Sindicato") %>' Visible="true" ></asp:Label>
+                                        <asp:Label Width="80px" ID="Complemento_Sindicato" runat="server" Text='<%# Bind("Complemento_Sindicato") %>' Visible="true" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Retenciones_Maecco">
                                     <ItemTemplate>
-                                        <asp:Label Width="300px"  ID="Retenciones_Maecco" runat="server" Text='<%# Bind("Retenciones_Maecco") %>'  Visible="true" ></asp:Label>
+                                        <asp:Label Width="80px"  ID="Retenciones_Maecco" runat="server" Text='<%# Bind("Retenciones_Maecco") %>'  Visible="true" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
                                  <asp:TemplateField HeaderText="Porcentaje_Comision">
                                     <ItemTemplate>
-                                        <asp:Label ID="Porcentaje_Comision" runat="server" Text='<%# Bind("Porcentaje_Comision") %>' Visible="true" ></asp:Label>
+                                        <asp:Label Width="80px" ID="Porcentaje_Comision" runat="server" Text='<%# Bind("Porcentaje_Comision") %>' Visible="true" ></asp:Label>
                                     </ItemTemplate>
 
                                 </asp:TemplateField>
                                  <asp:TemplateField HeaderText="Comision_Mecco">
                                     <ItemTemplate>
-                                        <asp:Label ID="Comision_Mecco" runat="server" Text='<%# Bind("Comision_Mecco") %>' Visible="true" ></asp:Label>
+                                        <asp:Label Width="80px" ID="Comision_Mecco" runat="server" Text='<%# Bind("Comision_Mecco") %>' Visible="true" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>  
                                 <asp:TemplateField HeaderText="Comision_complemento">
                                     <ItemTemplate>
-                                        <asp:Label ID="Comision_complemento" runat="server" Text='<%# Bind("Comision_complemento") %>' Visible="true" ></asp:Label>
+                                        <asp:Label Width="80px" ID="Comision_complemento" runat="server" Text='<%# Bind("Comision_complemento") %>' Visible="true" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="IMSS_CS">
                                     <ItemTemplate>
-                                        <asp:Label Width="300px"  ID="IMSS_CS" runat="server" Text='<%# Bind("IMSS_CS") %>'  Visible="true" ></asp:Label>
+                                        <asp:Label Width="80px"  ID="IMSS_CS" runat="server" Text='<%# Bind("IMSS_CS") %>'  Visible="true" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="RCV_CS">
                                     <ItemTemplate>
-                                        <asp:Label ID="RCV_CS" runat="server" Text='<%# Bind("RCV_CS") %>' Visible="true" ></asp:Label>
+                                        <asp:Label Width="80px" ID="RCV_CS" runat="server" Text='<%# Bind("RCV_CS") %>' Visible="true" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                  <asp:TemplateField HeaderText="Infonavit_CS">
                                     <ItemTemplate>
-                                        <asp:Label ID="Infonavit_CS" runat="server" Text='<%# Bind("Infonavit_CS") %>' Visible="true" ></asp:Label>
+                                        <asp:Label Width="80px" ID="Infonavit_CS" runat="server" Text='<%# Bind("Infonavit_CS") %>' Visible="true" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="ISN_CS">
                                     <ItemTemplate>
-                                        <asp:Label ID="ISN_CS" runat="server" Text='<%# Bind("ISN_CS") %>' Visible="true" ></asp:Label>
+                                        <asp:Label Width="80px" ID="ISN_CS" runat="server" Text='<%# Bind("ISN_CS") %>' Visible="true" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Total_Costo_Social">
                                     <ItemTemplate>
-                                        <asp:Label Width="300px"  ID="Total_Costo_Social" runat="server" Text='<%# Bind("Total_Costo_Social") %>'  Visible="true" ></asp:Label>
+                                        <asp:Label Width="80px"  ID="Total_Costo_Social" runat="server" Text='<%# Bind("Total_Costo_Social") %>'  Visible="true" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                  <asp:TemplateField HeaderText="Subtotal">
                                     <ItemTemplate>
-                                        <asp:Label ID="Subtotal" runat="server" Text='<%# Bind("Subtotal") %>' Visible="true" ></asp:Label>
+                                        <asp:Label Width="80px"   ID="Subtotal" runat="server" Text='<%# Bind("Subtotal") %>' Visible="true" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                  <asp:TemplateField HeaderText="IVA">
                                     <ItemTemplate>
-                                        <asp:Label ID="IVA" runat="server" Text='<%# Bind("IVA") %>' Visible="true" ></asp:Label>
+                                        <asp:Label Width="80px"   ID="IVA" runat="server" Text='<%# Bind("IVA") %>' Visible="true" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>  
                                 <asp:TemplateField HeaderText="TOTAL_DEPOSITO">
                                     <ItemTemplate>
-                                        <asp:Label ID="TOTAL_DEPOSITO" runat="server" Text='<%# Bind("TOTAL_DEPOSITO") %>' Visible="true" ></asp:Label>
+                                        <asp:Label Width="180px" ID="TOTAL_DEPOSITO" runat="server" Text='<%# Bind("TOTAL_DEPOSITO") %>' Visible="true" ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                               
