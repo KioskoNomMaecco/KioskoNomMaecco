@@ -348,7 +348,7 @@ public partial class nomina_nomina : System.Web.UI.Page
                             DataTable dtSumas = clFunciones.convertToDatatable(tbSumas);
                             for (int x = 0; x < dtSumas.Rows.Count; x++)
                             {
-                                dsNom.Tables[0].Rows.Add("1000000",
+                                dsNom.Tables[0].Rows.Add("",
                                                     "",
                                                    "",
                                                    "",
@@ -365,7 +365,7 @@ public partial class nomina_nomina : System.Web.UI.Page
                                                     dtSumas.Rows[x]["fSalarioBase"],
                                                     dtSumas.Rows[x]["fSalarioDiario"],
                                                     dtSumas.Rows[x]["fSalarioBC"],
-                                                    dtSumas.Rows[x]["iDiasTrabajados"],
+                                                    "",
                                                     "",
                                                     dtSumas.Rows[x]["iNumeroDias"],
                                                     dtSumas.Rows[x]["fSueldoBruto"],
