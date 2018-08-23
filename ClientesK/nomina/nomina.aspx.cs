@@ -342,6 +342,78 @@ public partial class nomina_nomina : System.Web.UI.Page
                             
                         }//Fin For Nominas
 
+                        Tabla tbSumas = Manejador.getEjecutaStoredProcedure1("getNominasPeriodoSerieTipoSUMACOSTOFull", Periodo + "|" + Serie + "|" + Tipo);
+                        if (tbSumas != null)
+                        {
+                            DataTable dtSumas = clFunciones.convertToDatatable(tbSumas);
+                            for (int x = 0; x < dtSumas.Rows.Count; x++)
+                            {
+                                dsNom.Tables[0].Rows.Add("1000000",
+                                                    "",
+                                                   "",
+                                                   "",
+                                                "",
+                                                    "",
+                                                    "",
+                                                    "",
+                                                    "",
+                                                     "",
+                                                    "",
+                                                    "",
+                                                    "TOTAl: ",
+                                                    dtSumas.Rows[x]["fvalor"],
+                                                    dtSumas.Rows[x]["fSalarioBase"],
+                                                    dtSumas.Rows[x]["fSalarioDiario"],
+                                                    dtSumas.Rows[x]["fSalarioBC"],
+                                                    dtSumas.Rows[x]["iDiasTrabajados"],
+                                                    "",
+                                                    dtSumas.Rows[x]["iNumeroDias"],
+                                                    dtSumas.Rows[x]["fSueldoBruto"],
+                                                    dtSumas.Rows[x]["fTExtraFijo"],
+                                                    dtSumas.Rows[x]["fTExtraOcasional"],
+                                                    dtSumas.Rows[x]["fDescSemObligatorio"],
+                                                    dtSumas.Rows[x]["fVacacionesProporcionales"],
+                                                  dtSumas.Rows[x]["Sueldo_Base_Mensual"],//SalarioDiarioxDias
+                                                    dtSumas.Rows[x]["fAguinaldoGravado"],
+                                                    dtSumas.Rows[x]["fAguinaldoExento"],
+                                                     dtSumas.Rows[x]["Total_Aguinaldo"],//Suma de aguinaldos
+                                                    dtSumas.Rows[x]["fPrimaVacacionalGravado"],
+                                                    dtSumas.Rows[x]["fPrimaVacacionalExento"],
+                                                     dtSumas.Rows[x]["Total_Prima_vac"],//Suma primas vacacionales
+                                                    dtSumas.Rows[x]["fTotalPercepciones"],
+                                                    dtSumas.Rows[x]["fTotalPercepcionesISR"],
+                                                    dtSumas.Rows[x]["fIncapacidad"],
+                                                    dtSumas.Rows[x]["fIsr"],
+                                                    dtSumas.Rows[x]["fImss"],
+                                                    dtSumas.Rows[x]["fInfonavit"],
+                                                    dtSumas.Rows[x]["fInfonavitBanterior"],
+                                                    dtSumas.Rows[x]["fAjusteInfonavit"],
+                                                    dtSumas.Rows[x]["fCuotaSindical"],
+                                                    dtSumas.Rows[x]["fPensionAlimenticia"],
+                                                    dtSumas.Rows[x]["fPrestamo"],
+                                                    dtSumas.Rows[x]["fFonacot"],
+                                                    dtSumas.Rows[x]["fSubsidioGenerado"],
+                                                    dtSumas.Rows[x]["fSubsidioAplicado"],
+                                                    dtSumas.Rows[x]["fMaecco"],
+                                                    dtSumas.Rows[x]["fPrestamoPerS"],
+                                                    dtSumas.Rows[x]["fAdeudoInfonavitS"],
+                                                    dtSumas.Rows[x]["fDiferenciaInfonavitS"],
+                                                    dtSumas.Rows[x]["fComplementoSindicato"],
+                                                    dtSumas.Rows[x]["fRetencionesMaecco"],
+                                                    dtSumas.Rows[x]["fPorComision"],
+                                                    dtSumas.Rows[x]["fComisionMaecco"],
+                                                    dtSumas.Rows[x]["fComisionComplemento"],
+                                                    dtSumas.Rows[x]["fImssCS"],
+                                                    dtSumas.Rows[x]["fRcvCS"],
+                                                    dtSumas.Rows[x]["fInfonavitCS"],
+                                                    dtSumas.Rows[x]["fIsnCS"],
+                                                    dtSumas.Rows[x]["fTotalCostoSocial"],
+                                                    dtSumas.Rows[x]["fSubtotal"],
+                                                    dtSumas.Rows[x]["fIVA"],
+                                                    dtSumas.Rows[x]["fTotalDeposito"]);
+                            }
+
+                        }
                         Session["dsNom"] = dsNom;
                         dtgNom.DataSource = dsNom;
                   }//Fin if Nominas
