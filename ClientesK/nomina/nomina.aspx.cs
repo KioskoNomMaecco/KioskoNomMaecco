@@ -64,28 +64,12 @@ public partial class nomina_nomina : System.Web.UI.Page
 
         DataSet dsNominas = new DataSet();
         dsNominas.Tables.Add("Tabla");
+        dsNominas.Tables[0].Columns.Add("iIdPeriodo");
+        dsNominas.Tables[0].Columns.Add("Serie");
+        dsNominas.Tables[0].Columns.Add("Tipo");
         dsNominas.Tables[0].Columns.Add("fkIidPeriodo");
         dsNominas.Tables[0].Columns.Add("iEstatusEmpleado");
         dsNominas.Tables[0].Columns.Add("iTipoNomina");
-        //dsNominas.Tables[0].Columns.Add("fkiIdPeriodo");
-        //dsNominas.Tables[0].Columns.Add("fkIidEmpleadoC");
-        //dsNominas.Tables[0].Columns.Add("fkiIdEmpresa");
-        //dsNominas.Tables[0].Columns.Add("fkiIdPuesto");
-        //dsNominas.Tables[0].Columns.Add("fkIidDepartamento");
-        //dsNominas.Tables[0].Columns.Add("iEstatusEmpleado");
-        //dsNominas.Tables[0].Columns.Add("Edad");
-        //dsNominas.Tables[0].Columns.Add("Puesto");
-        //dsNominas.Tables[0].Columns.Add("Buque");
-        ////dsNominas.Tables[0].Columns.Add("TipoInfonavit");
-        ////dsNominas.Tables[0].Columns.Add("fvalor");
-        ////dsNominas.Tables[0].Columns.Add("fSalarioBase");
-        ////dsNominas.Tables[0].Columns.Add("fSalarioDiario");
-        ////dsNominas.Tables[0].Columns.Add("fSalarioBC");
-        ////dsNominas.Tables[0].Columns.Add("iDiasTrabajandos");
-        ////dsNominas.Tables[0].Columns.Add("TipoIncapacidad");
-        ////dsNominas.Tables[0].Columns.Add("iNumeroDias");
-        ////dsNominas.Tables[0].Columns.Add("fSueltoBruto");
-        ////dsNominas.Tables[0].Columns.Add("fExtraOcasional");
 
 
 
@@ -105,10 +89,12 @@ public partial class nomina_nomina : System.Web.UI.Page
                         DataTable dtPeriodo = clFunciones.convertToDatatable(tbPeriodo);
                         for (int y = 0; y < dtPeriodo.Rows.Count; y++)
                         {
-                            //DataTable dtE = clFunciones.convertToDatatable(tbPeriodo);
-                            dsNominas.Tables[0].Rows.Add(dtPeriodo.Rows[y]["dFechaPeriodo"],
-                                                series(dtNominas.Rows[x]["iEstatusEmpleado"].ToString()),
-                                                tipo(dtNominas.Rows[x]["iTipoNomina"].ToString()));
+                            dsNominas.Tables[0].Rows.Add(dtNominas.Rows[x]["fkIidPeriodo"].ToString(),
+                                               dtNominas.Rows[x]["iEstatusEmpleado"].ToString(),
+                                               dtNominas.Rows[x]["iTipoNomina"].ToString(),
+                                               dtPeriodo.Rows[y]["dFechaPeriodo"],
+                                               series(dtNominas.Rows[x]["iEstatusEmpleado"].ToString()),
+                                               tipo(dtNominas.Rows[x]["iTipoNomina"].ToString()));
 
 
 
@@ -126,6 +112,9 @@ public partial class nomina_nomina : System.Web.UI.Page
 
                 Session["dsPagos"] = dsNominas;
                 dtgnominas.DataSource = dsNominas;
+                dtgNom.DataSource = null;
+                Session["dsNom"] = null;
+
 
             }
             else
@@ -133,9 +122,11 @@ public partial class nomina_nomina : System.Web.UI.Page
                 Session["dsPagos"] = null;
                 dtgnominas.DataSource = null;
                 lblmensaje.Text = "Sin Nominas";
-
+                dtgNom.DataSource = null;
+                Session["dsNom"] = null;
             }
             dtgnominas.DataBind();
+            dtgNom.DataBind();
 
         }
         catch (Exception EX)
@@ -176,59 +167,196 @@ public partial class nomina_nomina : System.Web.UI.Page
 
             if (e.CommandName == "Select")
             {
+                wcfKioskoCli.IsvcKioskoCliClient Manejador = new IsvcKioskoCliClient();
+
+
                 int id = Convert.ToInt32(e.CommandArgument);
 
-
-                //DateTime fecha = DateTime.Parse(((Label)dtgnominas.Rows[id].FindControl("lblfecha")).Text);
-                string archivo = ((Label)dtgnominas.Rows[id].FindControl("fkIidEmpleadoC")).Text;
-
-                Session["ruta"] = "infodown/" + archivo;
-                String path = Server.MapPath("../infodown") + "\\" + archivo;
-                String path2 = "../infodown/" + archivo;
+                string Periodo = ((Label)dtgnominas.Rows[id].FindControl("lblPeriodo")).Text;
+                string Serie = ((Label)dtgnominas.Rows[id].FindControl("lblSerie")).Text;
+                string Tipo = ((Label)dtgnominas.Rows[id].FindControl("lblTipo")).Text;
 
 
+                DataSet dsNom = new DataSet();
+                dsNom.Tables.Add("Tabla");
+                dsNom.Tables[0].Columns.Add("iIdNomina");
+                dsNom.Tables[0].Columns.Add("iIdEmpleado");
+                dsNom.Tables[0].Columns.Add("CodigoEmpleado");
+                dsNom.Tables[0].Columns.Add("Nombre");
+                dsNom.Tables[0].Columns.Add("Status");
+                dsNom.Tables[0].Columns.Add("RFC");
+                dsNom.Tables[0].Columns.Add("CURP");
+                dsNom.Tables[0].Columns.Add("Num_IMSS");
+                dsNom.Tables[0].Columns.Add("Fecha_Nac");
+                dsNom.Tables[0].Columns.Add("Edad");
+                dsNom.Tables[0].Columns.Add("Puesto");
+                dsNom.Tables[0].Columns.Add("Buque");
+                dsNom.Tables[0].Columns.Add("Tipo_Infonavit");
+                dsNom.Tables[0].Columns.Add("Valor_Infonavit");
+                dsNom.Tables[0].Columns.Add("Sueldo_Base_TMM");
+                dsNom.Tables[0].Columns.Add("Salario_Diario");
+                dsNom.Tables[0].Columns.Add("Salario_Cotizacion");
+                dsNom.Tables[0].Columns.Add("Dias_Trabajados");
+                dsNom.Tables[0].Columns.Add("Tipo_Incapacidad");
+                dsNom.Tables[0].Columns.Add("Numero_dias");
+                dsNom.Tables[0].Columns.Add("Sueldo_Base");
+                dsNom.Tables[0].Columns.Add("Tiempo_Extra_Fijo");
+                dsNom.Tables[0].Columns.Add("Tiempo_Extra_Ocasional");
+                dsNom.Tables[0].Columns.Add("Desc_Sem_Obligatorio");
+                dsNom.Tables[0].Columns.Add("Vacaciones_proporcionales");
+                dsNom.Tables[0].Columns.Add("Sueldo_Base_Mensual");
+                dsNom.Tables[0].Columns.Add("Aguinaldo_gravado");
+                dsNom.Tables[0].Columns.Add("Aguinaldo_exento");
+                dsNom.Tables[0].Columns.Add("Total_Aguinaldo");
+                dsNom.Tables[0].Columns.Add("Prima_vac_gravado");
+                dsNom.Tables[0].Columns.Add("Prima_vac_exento");
+                dsNom.Tables[0].Columns.Add("Total_Prima_vac");
+                dsNom.Tables[0].Columns.Add("Total_pecepciones");
+                dsNom.Tables[0].Columns.Add("Total_percepciones_p_isr");
+                dsNom.Tables[0].Columns.Add("Incapacidad");
+                dsNom.Tables[0].Columns.Add("ISR");
+                dsNom.Tables[0].Columns.Add("IMSS");
+                dsNom.Tables[0].Columns.Add("Infonavit");
+                dsNom.Tables[0].Columns.Add("Infonavit_bim_anterior");
+                dsNom.Tables[0].Columns.Add("Ajuste_infornavit");
 
-                Session["archivo"] = archivo;
+                dsNom.Tables[0].Columns.Add("Cuota_Sindical");
+                dsNom.Tables[0].Columns.Add("Pension_Alimenticia");
+                dsNom.Tables[0].Columns.Add("Prestamo");
+                dsNom.Tables[0].Columns.Add("Fonacot");
+                dsNom.Tables[0].Columns.Add("Subsidio_Generado");
+                dsNom.Tables[0].Columns.Add("Subsidio_Aplicado");
+                dsNom.Tables[0].Columns.Add("Maecco");
+                dsNom.Tables[0].Columns.Add("Prestamo_Personal_S");
+                dsNom.Tables[0].Columns.Add("Adeudo_Infonavit_S");
+                dsNom.Tables[0].Columns.Add("Diferencia_Infonavit_S");
+                dsNom.Tables[0].Columns.Add("Complemento_Sindicato");
+                dsNom.Tables[0].Columns.Add("Retenciones_Maecco");
+                dsNom.Tables[0].Columns.Add("Porcentaje_Comision");
+                dsNom.Tables[0].Columns.Add("Comision_Mecco");
+                dsNom.Tables[0].Columns.Add("Comision_complemento");
+                dsNom.Tables[0].Columns.Add("IMSS_CS");
+                dsNom.Tables[0].Columns.Add("RCV_CS");
+                dsNom.Tables[0].Columns.Add("Infonavit_CS");
+                dsNom.Tables[0].Columns.Add("ISN_CS");
+                dsNom.Tables[0].Columns.Add("Total_Costo_Social");
+                dsNom.Tables[0].Columns.Add("Subtotal");
+                dsNom.Tables[0].Columns.Add("IVA");
+                dsNom.Tables[0].Columns.Add("TOTAL_DEPOSITO");
 
-                System.IO.FileInfo toDownload = new System.IO.FileInfo(path);
-                if (toDownload.Exists)
-                {
-                    Response.Redirect("../descarga.aspx", false);
-                    //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "popup", "window.open('" + path2  + "','_blank')", true);
-                }
-                else
-                {
-                    ScriptManager.RegisterStartupScript(this, typeof(string), "alert", "alert('No se encuentra el archivo ');", true);
 
-                }
+                  Tabla tbNominas = Manejador.getEjecutaStoredProcedure1("getNominasPeriodoSerieTipoFull", Periodo + "|" + Serie + "|" + Tipo);
+                  if (tbNominas != null)
+                  {
+                        DataTable dtNominas = clFunciones.convertToDatatable(tbNominas);
+                        for (int x = 0; x < dtNominas.Rows.Count; x++)
+                        {
+                            Tabla tbEmpleado = Manejador.getEjecutaStoredProcedure1("getEmpleadoCxId", dtNominas.Rows[x]["fkiIdEmpleadoC"].ToString());
+
+                            if (tbEmpleado != null)
+                            {
+                                DataTable dtEmpleado = clFunciones.convertToDatatable(tbEmpleado);
+                                for (int y = 0; y < dtEmpleado.Rows.Count; y++)
+                                {
+
+                                    double salariobasemensual = Double.Parse(dtNominas.Rows[x]["fSalarioDiario"].ToString()) * Double.Parse(dtNominas.Rows[x]["iDiasTrabajados"].ToString());
+                                    double totalaguinaldo= Double.Parse( dtNominas.Rows[x]["fAguinaldoGravado"].ToString())+ Double.Parse( dtNominas.Rows[x]["fAguinaldoExento"].ToString());
+                                    double totalprima = Double.Parse(dtNominas.Rows[x]["fPrimaVacacionalGravado"].ToString()) + Double.Parse(dtNominas.Rows[x]["fPrimaVacacionalExento"].ToString());
+
+                                    String status = "";
+                                    if (dtEmpleado.Rows[y]["iOrigen"].ToString() == "1")
+                                    {
+                                        status = "INTERINO";
+
+                                    }
+                                    else
+                                    {
+                                        status = "PLANTA";
+                                    }
+
+                                    dsNom.Tables[0].Rows.Add(dtNominas.Rows[x]["iIdNomina"],
+                                                    dtNominas.Rows[x]["fkiIdEmpleadoC"],
+                                                    dtEmpleado.Rows[y]["cCodigoEmpleado"],
+                                                    dtEmpleado.Rows[y]["cNombreLargo"] ,
+                                                    status,
+                                                    dtEmpleado.Rows[y]["cRFC"],
+                                                    dtEmpleado.Rows[y]["cCURP"],
+                                                    dtEmpleado.Rows[y]["cIMSS"],
+                                                    dtEmpleado.Rows[y]["dFechaNac"],
+                                                    dtNominas.Rows[x]["Edad"],
+                                                    dtNominas.Rows[x]["Puesto"],
+                                                    dtNominas.Rows[x]["Buque"],
+                                                    dtNominas.Rows[x]["TipoInfonavit"],
+                                                    dtNominas.Rows[x]["fvalor"],
+                                                    dtNominas.Rows[x]["fSalarioBase"],
+                                                    dtNominas.Rows[x]["fSalarioDiario"],
+                                                    dtNominas.Rows[x]["fSalarioBC"],
+                                                    dtNominas.Rows[x]["iDiasTrabajados"],
+                                                    dtNominas.Rows[x]["TipoIncapacidad"],
+                                                    dtNominas.Rows[x]["iNumeroDias"],
+                                                    dtNominas.Rows[x]["fSueldoBruto"],
+                                                    dtNominas.Rows[x]["fTExtraFijo"],
+                                                    dtNominas.Rows[x]["fTExtraOcasional"],
+                                                    dtNominas.Rows[x]["fDescSemObligatorio"],
+                                                    dtNominas.Rows[x]["fVacacionesProporcionales"],
+                                                    salariobasemensual,//SalarioDiarioxDias
+                                                    dtNominas.Rows[x]["fAguinaldoGravado"],
+                                                    dtNominas.Rows[x]["fAguinaldoExento"],
+                                                   totalaguinaldo,//Suma de aguinaldos
+                                                    dtNominas.Rows[x]["fPrimaVacacionalGravado"],
+                                                    dtNominas.Rows[x]["fPrimaVacacionalExento"],
+                                                    totalprima,//Suma primas vacacionales
+                                                    dtNominas.Rows[x]["fTotalPercepciones"],
+                                                    dtNominas.Rows[x]["fTotalPercepcionesISR"],
+                                                    dtNominas.Rows[x]["fIncapacidad"],
+                                                    dtNominas.Rows[x]["fIsr"],
+                                                    dtNominas.Rows[x]["fImss"],
+                                                    dtNominas.Rows[x]["fInfonavit"],
+                                                    dtNominas.Rows[x]["fInfonavitBanterior"],
+                                                    dtNominas.Rows[x]["fAjusteInfonavit"],
+                                                    dtNominas.Rows[x]["fCuotaSindical"],
+                                                    dtNominas.Rows[x]["fPensionAlimenticia"],
+                                                    dtNominas.Rows[x]["fPrestamo"],
+                                                    dtNominas.Rows[x]["fFonacot"],
+                                                    dtNominas.Rows[x]["fSubsidioGenerado"],
+                                                    dtNominas.Rows[x]["fSubsidioAplicado"],
+                                                    dtNominas.Rows[x]["fMaecco"],
+                                                    dtNominas.Rows[x]["fPrestamoPerS"],
+                                                    dtNominas.Rows[x]["fAdeudoInfonavitS"],
+                                                    dtNominas.Rows[x]["fDiferenciaInfonavitS"],
+                                                    dtNominas.Rows[x]["fComplementoSindicato"],
+                                                    dtNominas.Rows[x]["fRetencionesMaecco"],
+                                                    dtNominas.Rows[x]["fPorComision"],
+                                                    dtNominas.Rows[x]["fComisionMaecco"],
+                                                    dtNominas.Rows[x]["fComisionComplemento"],
+                                                    dtNominas.Rows[x]["fImssCS"],
+                                                    dtNominas.Rows[x]["fRcvCS"],
+                                                    dtNominas.Rows[x]["fInfonavitCS"],
+                                                    dtNominas.Rows[x]["fIsnCS"],
+                                                    dtNominas.Rows[x]["fTotalCostoSocial"],
+                                                    dtNominas.Rows[x]["fSubtotal"],
+                                                    dtNominas.Rows[x]["fIVA"],
+                                                    dtNominas.Rows[x]["fTotalDeposito"]);
+                                }//Fin For Empleados
+                            }//If Empleado
+                            
+                        }//Fin For Nominas
+
+                        Session["dsNom"] = dsNom;
+                        dtgNom.DataSource = dsNom;
+                  }//Fin if Nominas
+                  else
+                  {
+                      Session["dsNom"] = null;
+                      dtgNom.DataSource = null;
+                      lblmensaje.Text = "Sin Nominas";
+
+                  }
+                  dtgNom.DataBind();
 
             }
-            //if (e.CommandName == "Delete")
-            //{
-            //    int id = Convert.ToInt32(e.CommandArgument);
-
-
-            //    //DateTime fecha = DateTime.Parse(((Label)dtgnominas.Rows[id].FindControl("lblfecha")).Text);
-            //    string sindicato = ((Label)dtgnominas.Rows[id].FindControl("lbldpagosin")).Text;
-
-            //    Session["ruta"] = "pagosn/" + sindicato + ".pdf";
-            //    String path = Server.MapPath("../pagosn") + "\\" + sindicato + ".pdf";
-            //    String path2 = "../pagosn/" + sindicato + ".pdf";
-            //    Session["archivo"] = sindicato + ".pdf";
-            //    System.IO.FileInfo toDownload = new System.IO.FileInfo(path);
-            //    if (toDownload.Exists)
-            //    {
-            //        Response.Redirect("../descargar.aspx", true);
-            //        //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "popup", "window.open('" + path2 + "','_blank')", true);
-            //    }
-            //    else
-            //    {
-            //        ScriptManager.RegisterStartupScript(this, typeof(string), "alert", "mensaje('No se encuentra el archivo ');", true);
-
-            //    }
-
-            //}
-
+           
+          
         }
         catch (Exception EX)
         {

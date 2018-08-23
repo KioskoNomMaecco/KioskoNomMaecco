@@ -28,6 +28,7 @@
         Session["dsPagos"] = new System.Data.DataSet();
         Session["dsCostos"] = new System.Data.DataSet();
         Session["dsNominas"] = new System.Data.DataSet();
+        Session["dsNom"] = new System.Data.DataSet();
         //Session["dsAnticipo"] = new System.Data.DataSet();
         //Session["dsViaje"] = new System.Data.DataSet();
         Session["idtmp"] = "";

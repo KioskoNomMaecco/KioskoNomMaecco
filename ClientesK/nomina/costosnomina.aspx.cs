@@ -123,9 +123,6 @@ public partial class nomina_costosnomina : System.Web.UI.Page
                         }
 
 
-
-                        //nombreEmpleado = dtE.Rows[0]["cNombre"].ToString();
-
                     }
 
 
