@@ -283,7 +283,7 @@ public partial class nomina_nomina : System.Web.UI.Page
                                                     dtEmpleado.Rows[y]["cRFC"],
                                                     dtEmpleado.Rows[y]["cCURP"],
                                                     dtEmpleado.Rows[y]["cIMSS"],
-                                                   nac.ToShortDateString(),
+                                                    nac.ToShortDateString(),
                                                     dtNominas.Rows[x]["Edad"],
                                                     dtNominas.Rows[x]["Puesto"],
                                                     dtNominas.Rows[x]["Buque"],
@@ -303,7 +303,7 @@ public partial class nomina_nomina : System.Web.UI.Page
                                                     salariobasemensual,//SalarioDiarioxDias
                                                     dtNominas.Rows[x]["fAguinaldoGravado"],
                                                     dtNominas.Rows[x]["fAguinaldoExento"],
-                                                   totalaguinaldo,//Suma de aguinaldos
+                                                    totalaguinaldo,//Suma de aguinaldos
                                                     dtNominas.Rows[x]["fPrimaVacacionalGravado"],
                                                     dtNominas.Rows[x]["fPrimaVacacionalExento"],
                                                     totalprima,//Suma primas vacacionales
@@ -351,9 +351,9 @@ public partial class nomina_nomina : System.Web.UI.Page
                             {
                                 dsNom.Tables[0].Rows.Add("",
                                                     "",
-                                                   "",
-                                                   "",
-                                                "",
+                                                    "",
+                                                    "",
+                                                    "",
                                                     "",
                                                     "",
                                                     "",
@@ -361,26 +361,26 @@ public partial class nomina_nomina : System.Web.UI.Page
                                                      "",
                                                     "",
                                                     "",
-                                                    "TOTAl: ",
+                                                    "TOTAL: ",
                                                     dtSumas.Rows[x]["fvalor"],
                                                     dtSumas.Rows[x]["fSalarioBase"],
                                                     dtSumas.Rows[x]["fSalarioDiario"],
                                                     dtSumas.Rows[x]["fSalarioBC"],
                                                     "",
                                                     "",
-                                                   "",
+                                                    "",
                                                     dtSumas.Rows[x]["fSueldoBruto"],
                                                     dtSumas.Rows[x]["fTExtraFijo"],
                                                     dtSumas.Rows[x]["fTExtraOcasional"],
                                                     dtSumas.Rows[x]["fDescSemObligatorio"],
                                                     dtSumas.Rows[x]["fVacacionesProporcionales"],
-                                                  dtSumas.Rows[x]["Sueldo_Base_Mensual"],//SalarioDiarioxDias
+                                                    dtSumas.Rows[x]["Sueldo_Base_Mensual"],//SalarioDiarioxDias
                                                     dtSumas.Rows[x]["fAguinaldoGravado"],
                                                     dtSumas.Rows[x]["fAguinaldoExento"],
-                                                     dtSumas.Rows[x]["Total_Aguinaldo"],//Suma de aguinaldos
+                                                    dtSumas.Rows[x]["Total_Aguinaldo"],//Suma de aguinaldos
                                                     dtSumas.Rows[x]["fPrimaVacacionalGravado"],
                                                     dtSumas.Rows[x]["fPrimaVacacionalExento"],
-                                                     dtSumas.Rows[x]["Total_Prima_vac"],//Suma primas vacacionales
+                                                    dtSumas.Rows[x]["Total_Prima_vac"],//Suma primas vacacionales
                                                     dtSumas.Rows[x]["fTotalPercepciones"],
                                                     dtSumas.Rows[x]["fTotalPercepcionesISR"],
                                                     dtSumas.Rows[x]["fIncapacidad"],
